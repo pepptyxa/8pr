@@ -12,11 +12,15 @@
 	while($user_read = $query_user->fetch_row()) {
 		if(password_verify($password, $user_read[2])) {
 			$id = $user_read[0];
+			break;
 		}
 	}
 	
 	if($id != -1) {
-		$_SESSION['user'] = $id;
+		$_SESSION['mail'] = $login;
+		$_SESSION['preuser'] = $id;
+		echo md5(md5($id));
+	} else {
+		echo "";
 	}
-	echo md5(md5($id));
 ?>
